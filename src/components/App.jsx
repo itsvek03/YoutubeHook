@@ -8,6 +8,8 @@ import axios from "axios"
 export default function App() {
     const [inputdata, setinputdata] = useState('Dil Bechara');
     const [videolist, setvideolist] = useState([])
+    const [selectvideo, setSelectVideo] = useState([])
+
     useEffect(() => {
         async function SuggestionVideo() {
             let response = await axios.get(
@@ -18,18 +20,22 @@ export default function App() {
                         type: "video",
                         part: "snippet",
                         maxResults: 10,
-                        key: "AIzaSyAWNoZkFaR6DKnHdXdyJlitrYtKCQg5yc0",
+                        // key: "AIzaSyAWNoZkFaR6DKnHdXdyJlitrYtKCQg5yc0",
+                        //key: "AIzaSyAGAf02zBPQjmlJRPomdtNJIPvXxTar-IU"
+                        key: "AIzaSyC3FZXVjpbfdb8ryJp7Hxy-JGaNFyjU9dc"
                     },
                 }
             );
-            console.log(response)
+            //console.log(response)
             setvideolist(response.data.items);
+            setSelectVideo(response.data.items[0])
             return response;
         }
         SuggestionVideo();
     }, [inputdata])
 
 
+    console.log(selectvideo)
     return (
         <>
             <div className="container-fluid">
@@ -53,11 +59,14 @@ export default function App() {
                         <div className="container-fluid mt-5 p-2">
                             <div className="row">
                                 <div className="col-md-8">
-                                    <SelectedVideo />
+                                    <SelectedVideo
+                                        selectvideo={selectvideo}
+                                    />
                                 </div>
                                 <div className="col-md-4">
                                     <Suggestions
                                         videolist={videolist}
+                                        setSelectVideo={setSelectVideo}
                                     />
                                 </div>
                             </div>
