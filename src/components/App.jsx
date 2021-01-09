@@ -11,7 +11,7 @@ export default function App() {
     const [selectvideo, setSelectVideo] = useState([])
 
     useEffect(() => {
-        async function SuggestionVideo() {
+        async function SuggestionVideo(inputdata) {
             let response = await axios.get(
                 "https://www.googleapis.com/youtube/v3/search",
                 {
@@ -26,16 +26,13 @@ export default function App() {
                     },
                 }
             );
-            //console.log(response)
             setvideolist(response.data.items);
             setSelectVideo(response.data.items[0])
             return response;
         }
-        SuggestionVideo();
+        SuggestionVideo(inputdata);
     }, [inputdata])
 
-
-    console.log(selectvideo)
     return (
         <>
             <div className="container-fluid">

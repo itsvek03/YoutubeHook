@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Items from './Items'
 
 export default function Suggestions(props) {
-    console.log(props)
+    //console.log(props)
     // const [se, SetSe] = useState(setSelectVideo)
     return (
         <>

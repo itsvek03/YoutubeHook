@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 export default function Items(props) {
-    console.log("Items", props)
+    //console.log("Items", props)
     return (
         <>
             <div className="mt-4">
